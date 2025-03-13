@@ -3,5 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { import = "custom.plugins.harpoon" }
+  { import = 'custom.plugins.harpoon' },
+  { import = 'custom.plugins.supermaven' },
 }
