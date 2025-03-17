@@ -7,4 +7,5 @@ return {
   { import = 'custom.plugins.supermaven' },
   { import = 'custom.plugins.jupyter' },
   { import = 'custom.plugins.python-repl' },
+  { import = 'custom.plugins.avante' },
 }
