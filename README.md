@@ -1,4 +1,6 @@
-# kickstart.nvim
+# Chris nvim config V2
+
+> Forked from kickstart
 
 ## Introduction
 
