@@ -12,7 +12,7 @@
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:chrischank/nvim_v2 ~/.config/chrischank/nvim_v2
+git clone git@github.com:chrischank/nvim_v2 ~/.config/nvim
 ```
 
 Open Neovim with this config:
