@@ -1,4 +1,4 @@
-# Chris nvim_v2
+# Chris moderately-plagerised nvim_v2
 
 <a href="https://dotfyle.com/chrischank/nvimv"><img src="https://dotfyle.com/chrischank/nvimv/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/chrischank/nvimv"><img src="https://dotfyle.com/chrischank/nvimv/badges/leaderkey?style=flat" /></a>
@@ -33,6 +33,7 @@ NVIM_APPNAME=chrischank/nvim_v2/ nvim
 ### colorscheme
 
 + [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
++ [rebelot/kanagawa.nvim](https://dotfyle.com/plugins/rebelot/kanagawa.nvim)
 ### comment
 
 + [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
@@ -42,13 +43,13 @@ NVIM_APPNAME=chrischank/nvim_v2/ nvim
 + [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
 ### debugging
 
-+ [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 + [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
++ [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 ### editing-support
 
-+ [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
-+ [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
 + [geg2102/nvim-jupyter-client](https://dotfyle.com/plugins/geg2102/nvim-jupyter-client)
++ [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
++ [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
 ### file-explorer
 
 + [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
@@ -76,8 +77,8 @@ NVIM_APPNAME=chrischank/nvim_v2/ nvim
 ### lsp
 
 + [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
-+ [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
++ [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 ### lsp-installer
 
 + [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
@@ -108,8 +109,8 @@ NVIM_APPNAME=chrischank/nvim_v2/ nvim
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 ### utility
 
-+ [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
 + [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim)
++ [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
 ## Language Servers
 
 + html
