@@ -1,4 +1,4 @@
-# Chris nvim_v2/
+# Chris nvim_v2
 
 <a href="https://dotfyle.com/chrischank/nvimv"><img src="https://dotfyle.com/chrischank/nvimv/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/chrischank/nvimv"><img src="https://dotfyle.com/chrischank/nvimv/badges/leaderkey?style=flat" /></a>
