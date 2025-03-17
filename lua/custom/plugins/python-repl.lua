@@ -7,6 +7,11 @@ return {
       require('nvim-python-repl').setup {
         execute_on_send = true,
         vsplit = true,
+        spaw_command = {
+          python = 'uv run ipython3',
+          scala = 'sbt console',
+          lua = 'ilua',
+        },
       }
       vim.keymap.set('n', '<leader>sd', function()
         require('nvim-python-repl').send_statement_definition()
