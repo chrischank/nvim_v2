@@ -6,4 +6,5 @@ return {
   { import = 'custom.plugins.harpoon' },
   { import = 'custom.plugins.supermaven' },
   { import = 'custom.plugins.jupyter' },
+  { import = 'custom.plugins.python-repl' },
 }
