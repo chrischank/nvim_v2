@@ -220,6 +220,10 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('n', '<C-wv>', vim.cmd.vsplit)
 vim.keymap.set('n', '<C-ws>', vim.cmd.split)
 
+-- Keymap for ESC to jk or kj in all modes
+vim.keymap.set({ 'i', 'v', 'c', 'o' }, 'jk', '<Esc>', { desc = 'Exit to normal mode' })
+vim.keymap.set({ 'i', 'v', 'c', 'o' }, 'kj', '<Esc>', { desc = 'Exit to normal mode' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
