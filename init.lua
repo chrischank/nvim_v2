@@ -222,6 +222,14 @@ vim.keymap.set('n', '<C-wv>', vim.cmd.vsplit)
 vim.keymap.set('n', '<C-ws>', vim.cmd.split)
 vim.keymap.set('n', '<C-x>', '<S-Down>')
 
+-- Clipboard in visual mode
+vim.keymap.set('v', '<leader>p', '"_dP')
+vim.keymap.set('v', '<leader>y', '"+y')
+
+-- Clipboard in normal mode
+vim.keymap.set('n', '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>Y', 'gg"+yG')
+
 -- Keymap for ESC to jk or kj in all modes
 vim.keymap.set({ 'i', 'v', 'c', 'o' }, 'jk', '<Esc>', { desc = 'Exit to normal mode' })
 vim.keymap.set({ 'i', 'v', 'c', 'o' }, 'kj', '<Esc>', { desc = 'Exit to normal mode' })
