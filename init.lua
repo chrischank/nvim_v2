@@ -220,6 +220,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.keymap.set('n', '<C-wv>', vim.cmd.vsplit)
 vim.keymap.set('n', '<C-ws>', vim.cmd.split)
+vim.keymap.set('n', '<C-x>', '<S-Down>')
 
 -- Keymap for ESC to jk or kj in all modes
 vim.keymap.set({ 'i', 'v', 'c', 'o' }, 'jk', '<Esc>', { desc = 'Exit to normal mode' })
