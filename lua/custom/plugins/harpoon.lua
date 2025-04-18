@@ -13,6 +13,9 @@ return {
       vim.keymap.set('n', '<C-m>', function()
         harpoon:list():add()
       end)
+      vim.keymap.set('n', '<C-r>', function()
+        harpoon:list():remove()
+      end)
 
       vim.keymap.set('n', '<C-a>', function()
         harpoon:list():select(1)
