@@ -3,9 +3,7 @@
 -- See the kickstart.nvim README for more information
 return {
   { import = 'custom.plugins.harpoon' },
-  { import = 'custom.plugins.supermaven' },
   { import = 'custom.plugins.jupyter' },
   { import = 'custom.plugins.python-repl' },
   { import = 'custom.plugins.avante' },
-  { import = 'custom.plugins.kanagawa'}
 }
