@@ -6,6 +6,5 @@ return {
   { import = 'custom.plugins.supermaven' },
   { import = 'custom.plugins.jupyter' },
   { import = 'custom.plugins.python-repl' },
-  { import = 'custom.plugins.avante' },
-  { import = 'custom.plugins.kanagawa'}
+  { import = 'custom.plugins.kanagawa' },
 }
