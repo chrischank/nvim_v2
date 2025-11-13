@@ -7,4 +7,5 @@ return {
   { import = 'custom.plugins.jupyter' },
   { import = 'custom.plugins.python-repl' },
   { import = 'custom.plugins.kanagawa' },
+  { import = 'custom.plugins.nvim-tmux-navigator' },
 }
