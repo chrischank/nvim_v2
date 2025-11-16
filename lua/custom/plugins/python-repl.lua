@@ -8,14 +8,14 @@ return {
         execute_on_send = true,
         vsplit = true,
         spawn_command = {
-          python = 'uv run --env-file .venv/bin/activate ipython3',
+          python = 'uv run ipython3',
           scala = 'sbt console',
           lua = 'ilua',
         },
       }
-      vim.keymap.set('n', '<leader>sd', function()
+      vim.keymap.set('n', '<leader>pd', function()
         require('nvim-python-repl').send_statement_definition()
-      end, { desc = 'Send semantic unit to REPL' })
+      end, { desc = '[P]ython send [D]efinition to REPL' })
       vim.keymap.set('v', '<leader>vr', function()
         require('nvim-python-repl').send_visual_to_repl()
       end, { desc = 'Send visual selection to REPL' })
