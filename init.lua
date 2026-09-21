@@ -174,6 +174,91 @@ vim.opt.cursorlineopt = 'number'
 -- Colour column to guide code wrap
 vim.opt.colorcolumn = '80'
 
+-- [[ Indentation ]]
+--  4 spaces is the global default; the table below overrides it for the
+--  ecosystems that conventionally use something else, so that what we type
+--  matches what the formatter (prettier, stylua, gofmt, ...) writes back.
+--  NOTE: `vim-sleuth` runs on BufReadPost, i.e. *after* the FileType autocmd
+--  below, so a file or project that declares its own style (.editorconfig,
+--  existing indentation) still wins over these defaults.
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+
+local indent_by_filetype = {}
+
+--- @param filetypes string[]
+--- @param indent { width: integer, expandtab: boolean? }
+local function set_indent(filetypes, indent)
+  for _, ft in ipairs(filetypes) do
+    indent_by_filetype[ft] = indent
+  end
+end
+
+-- 2 spaces: the JS/web ecosystem (prettier's default), Lua (stylua, see
+-- .stylua.toml), Vimscript, Elixir (`mix format`), Ruby, Nix, Terraform,
+-- shell (Google shell style guide) and the data/markup formats.
+set_indent({
+  'javascript',
+  'javascriptreact',
+  'typescript',
+  'typescriptreact',
+  'vue',
+  'svelte',
+  'json',
+  'jsonc',
+  'json5',
+  'yaml',
+  'toml',
+  'graphql',
+  'html',
+  'xml',
+  'css',
+  'scss',
+  'less',
+  'markdown',
+  'lua',
+  'vim',
+  'vimdoc',
+  'query',
+  'elixir',
+  'eelixir',
+  'heex',
+  'ruby',
+  'eruby',
+  'nix',
+  'terraform',
+  'hcl',
+  'sh',
+  'bash',
+  'zsh',
+}, { width = 2 })
+
+-- 4 spaces: PEP 8, Google Java style, PSR-12, rustfmt, .NET, ...
+set_indent({ 'python', 'java', 'kotlin', 'c', 'cpp', 'cs', 'rust', 'php', 'sql', 'groovy' }, { width = 4 })
+
+-- Hard tabs: gofmt writes tabs, and make *requires* them.
+set_indent({ 'go', 'gomod', 'gowork', 'gotmpl' }, { width = 4, expandtab = false })
+set_indent({ 'make', 'gitconfig' }, { width = 8, expandtab = false })
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Apply the conventional indent width for the filetype',
+  group = vim.api.nvim_create_augroup('indent-by-filetype', { clear = true }),
+  callback = function(event)
+    local indent = indent_by_filetype[event.match]
+    if not indent then
+      return
+    end
+    local expandtab = indent.expandtab ~= false
+    vim.opt_local.expandtab = expandtab
+    vim.opt_local.shiftwidth = indent.width
+    vim.opt_local.tabstop = indent.width
+    -- With hard tabs, `softtabstop = 0` keeps <Tab> inserting a real tab.
+    vim.opt_local.softtabstop = expandtab and indent.width or 0
+  end,
+})
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
@@ -1078,10 +1163,9 @@ require('lazy').setup({
         pattern = { 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'typescript', 'html', 'yaml', 'python' },
         callback = function()
           vim.treesitter.start()
+          -- Indent width itself comes from the per-filetype table near the top
+          -- of this file; treesitter only decides *where* the indent goes.
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          vim.opt_local.shiftwidth = 4
-          vim.opt_local.tabstop = 4
-          vim.opt_local.expandtab = true
         end,
       })
     end,
