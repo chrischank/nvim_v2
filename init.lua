@@ -1009,7 +1009,6 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
-
     end,
   },
 
@@ -1019,15 +1018,18 @@ require('lazy').setup({
     lazy = false,
     build = ':TSUpdate',
     config = function()
-      local treesitter = require('nvim-treesitter')
+      local treesitter = require 'nvim-treesitter'
       treesitter.setup()
-      treesitter.install({ 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'typescript', 'html', 'yaml', 'python' })
+      treesitter.install { 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'typescript', 'html', 'yaml', 'python' }
 
       vim.api.nvim_create_autocmd('FileType', {
         pattern = { 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'typescript', 'html', 'yaml', 'python' },
         callback = function()
           vim.treesitter.start()
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.opt_local.shiftwidth = 4
+          vim.opt_local.tabstop = 4
+          vim.opt_local.expandtab = true
         end,
       })
     end,
