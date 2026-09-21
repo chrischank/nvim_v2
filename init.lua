@@ -249,6 +249,46 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Lint JavaScript/TypeScript with eslint on save.
+--  Uses `eslint_d` (installed via mason below) and only runs when the file
+--  belongs to a project that actually has an eslint config, so editing a
+--  stray .js file doesn't spam errors.
+local eslint_configs = {
+  'eslint.config.js',
+  'eslint.config.mjs',
+  'eslint.config.cjs',
+  'eslint.config.ts',
+  'eslint.config.mts',
+  'eslint.config.cts',
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.json',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+}
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  desc = 'Lint JS/TS files with eslint on save',
+  group = vim.api.nvim_create_augroup('lint-js-on-save', { clear = true }),
+  pattern = { '*.js', '*.jsx', '*.mjs', '*.cjs', '*.ts', '*.tsx', '*.mts', '*.cts' },
+  callback = function(event)
+    local ok, lint = pcall(require, 'lint')
+    if not ok then
+      return
+    end
+    local found = vim.fs.find(eslint_configs, {
+      upward = true,
+      path = vim.fn.fnamemodify(event.match, ':p:h'),
+      stop = vim.uv.os_homedir(),
+    })
+    if vim.tbl_isempty(found) then
+      return
+    end
+    lint.try_lint 'eslint_d'
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -756,6 +796,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'eslint_d', -- Used to lint JavaScript/TypeScript code
+        'prettierd', -- Used to format JavaScript/TypeScript code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -813,8 +855,18 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- 'stop_after_first' runs the first available formatter from the list,
+        -- so `prettierd` is used when running and `prettier` is the fallback.
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier', stop_after_first = true },
+        jsonc = { 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        scss = { 'prettierd', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
